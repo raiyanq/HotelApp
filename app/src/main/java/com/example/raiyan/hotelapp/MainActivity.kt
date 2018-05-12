@@ -7,7 +7,10 @@ import android.view.View
 import android.widget.Button
 import java.util.*
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.widget.DatePicker
+import android.widget.EditText
 import com.example.raiyan.hotelapp.R
 import java.text.SimpleDateFormat
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,9 +24,11 @@ class MainActivity : AppCompatActivity() {
     var month = cal.get(Calendar.MONTH)
     var day = cal.get(Calendar.DAY_OF_MONTH)
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         // get the references from layout file
         textview_date = this.text_view_date_1
@@ -54,6 +59,8 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
+
     }
 
     private fun updateDateInView() {
@@ -62,4 +69,9 @@ class MainActivity : AppCompatActivity() {
         textview_date!!.text = sdf.format(cal.getTime())
     }
 
+    private fun nextActivity(view: View) {
+        val firstIntent = Intent(this, SecondActivity::class.java)
+        // Start the new activity.
+        startActivity(firstIntent)
+    }
 }
